@@ -4,7 +4,7 @@ import Aux from '../../../hoc/Auxilliary';
 const orderSummary =(props) =>{
     const ingredientSummary=Object.keys(props.ingredients)
             .map(igKey=>{
-                return(<li>
+                return(<li key={igKey}>
                         <span>{igKey}</span> : {props.ingredients[igKey]}
                 </li>)
             })
@@ -12,12 +12,10 @@ const orderSummary =(props) =>{
     return(
         <Aux>
             <h3>Your Order</h3>
-            <p>A delicious burger with the following ingredients :
+            <p>A delicious burger with the following ingredients :</p>
             <ul>
                 {ingredientSummary}
-            </ul>
-            </p>
-            
+            </ul>     
             <p>Continue to Checkout ?</p>
         </Aux>
     )
