@@ -91,44 +91,45 @@ class BurgerBuilder extends Component{
 
     purchaseContinueHandler=()=>{
         // alert('You can continue');
-        this.setState({loading:true})
-        const order={
-            ingredients:this.state.ingredients,
-            price:this.state.totalPrice,
-            customer:{
-                name:'Ayush Kumar',
-                address:{
-                    locality:'Patel Nagar',
-                    zipcode:822101,
-                },
-                email:'kumarayush731@gmail.com'
-            }
-        }
-        axios.post('/order.json',order)
-            .then(res=>{
-                this.setState({
-                    loading:false,
-                    purchasing:false,
-                    ingredients:{
-                        salad:0,
-                        bacon:0,
-                        cheese:0,
-                        meat:0 
-                    }
-                })
-            })
-            .catch(err =>{
-                this.setState({
-                    loading:false,
-                    purchasing:false,
-                    ingredients:{
-                        salad:0,
-                        bacon:0,
-                        cheese:0,
-                        meat:0 
-                    }
-                })
-            });
+        // this.setState({loading:true})
+        // const order={
+        //     ingredients:this.state.ingredients,
+        //     price:this.state.totalPrice,
+        //     customer:{
+        //         name:'Ayush Kumar',
+        //         address:{
+        //             locality:'Patel Nagar',
+        //             zipcode:822101,
+        //         },
+        //         email:'kumarayush731@gmail.com'
+        //     }
+        // }
+        // axios.post('/order.json',order)
+        //     .then(res=>{
+        //         this.setState({
+        //             loading:false,
+        //             purchasing:false,
+        //             ingredients:{
+        //                 salad:0,
+        //                 bacon:0,
+        //                 cheese:0,
+        //                 meat:0 
+        //             }
+        //         })
+        //     })
+        //     .catch(err =>{
+        //         this.setState({
+        //             loading:false,
+        //             purchasing:false,
+        //             ingredients:{
+        //                 salad:0,
+        //                 bacon:0,
+        //                 cheese:0,
+        //                 meat:0 
+        //             }
+        //         })
+        //     });
+        this.props.history.push('/checkout');
     }
 
     render(){ 
