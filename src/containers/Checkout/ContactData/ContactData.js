@@ -81,6 +81,21 @@ class ContactData extends Component{
             });
     }
 
+    inputChnagedHandler=(event,inputTdentifier) => {
+        // console.log(event.target.value);
+        const updateOrderForm={
+            ...this.state.orderForm
+        }
+        // console.log(updateOrderForm);
+        const updateFormElement={
+            ...updateOrderForm[inputTdentifier]
+        }
+        // console.log(updateFormElement);
+        updateFormElement.value=event.target.value;
+        updateOrderForm[inputTdentifier]=updateFormElement;
+        this.setState({orderForm:updateOrderForm})
+    }
+
     render(){ 
         const formElementsArray=[];
         for(let key in this.state.orderForm){
@@ -97,7 +112,8 @@ class ContactData extends Component{
                         key={formElement.id}
                         elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}
-                        value={formElement.config.value}/>
+                        value={formElement.config.value}
+                        changed={(event)=>this.inputChnagedHandler(event,formElement.id)}/>
                 ))}
                 <Button 
                 btnType="Success" 
