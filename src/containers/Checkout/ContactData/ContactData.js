@@ -10,7 +10,7 @@ class ContactData extends Component{
         orderForm:{
             name:{
                 elementType:'input',
-                elemetConfig:{
+                elementConfig:{
                     type:'text',
                     placeholder:'Your Name'
                 },
@@ -18,7 +18,7 @@ class ContactData extends Component{
             },
             street:{
                 elementType:'input',
-                elemetConfig:{
+                elementConfig:{
                     type:'text',
                     placeholder:'Street'
                 },
@@ -26,7 +26,7 @@ class ContactData extends Component{
             },
             zipcode:{
                 elementType:'input',
-                elemetConfig:{
+                elementConfig:{
                     type:'text',
                     placeholder:'ZipCode'
                 },
@@ -34,7 +34,7 @@ class ContactData extends Component{
             },
             country:{
                 elementType:'input',
-                elemetConfig:{
+                elementConfig:{
                     type:'text',
                     placeholder:'Countary'
                 },
@@ -42,7 +42,7 @@ class ContactData extends Component{
             },
             email:{
                 elementType:'input',
-                elemetConfig:{
+                elementConfig:{
                     type:'email',
                     placeholder:'Your E-mail'
                 },
@@ -50,10 +50,10 @@ class ContactData extends Component{
             },
             deliveryMethod:{
                 elementType:'select',
-                elemetConfig:{
+                elementConfig:{
                     options:[
-                        {value:'fastest',placeholder:'Fastest'},
-                        {value:'cheapest',placeholder:'Cheapest'}
+                        {value:'fastest',displayValue:'Fastest'},
+                        {value:'cheapest',displayValue:'Cheapest'}
                     ]
                 },
                 value:''
@@ -96,7 +96,7 @@ class ContactData extends Component{
                     <Input
                         key={formElement.id}
                         elementType={formElement.config.elementType}
-                        elementConfig={formElement.config.elemetConfig}
+                        elementConfig={formElement.config.elementConfig}
                         value={formElement.config.value}/>
                 ))}
                 <Button 
