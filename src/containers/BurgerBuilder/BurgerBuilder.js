@@ -11,17 +11,10 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actionTypes from '../../store/actions';
 
-const INGREDIENT_PRICES={
-    salad:10,
-    cheese:15,
-    meat:50,
-    bacon:20,
-}
 
 class BurgerBuilder extends Component{
 
     state={
-        totalPrice:0,
         purchasable:false,
         purchasing:false,
         loading:false,
@@ -51,37 +44,37 @@ class BurgerBuilder extends Component{
 
     }
 
-     addIngredientHandler=(type)=>{
-        const oldCount=this.state.ingredients[type];
-        const updateCount=oldCount+1;
-        const updateIngredients={
-            ...this.state.ingredients
-        }
-        updateIngredients[type]=updateCount;
-        const priceAddition=INGREDIENT_PRICES[type];
-        const oldPrice=this.state.totalPrice;
-        const newPrice=oldPrice+priceAddition;
-        this.setState({totalPrice:newPrice,ingredients:updateIngredients});
-        this.updatePurchageState(updateIngredients);
-    }
+    //  addIngredientHandler=(type)=>{
+    //     const oldCount=this.state.ingredients[type];
+    //     const updateCount=oldCount+1;
+    //     const updateIngredients={
+    //         ...this.state.ingredients
+    //     }
+    //     updateIngredients[type]=updateCount;
+    //     const priceAddition=INGREDIENT_PRICES[type];
+    //     const oldPrice=this.state.totalPrice;
+    //     const newPrice=oldPrice+priceAddition;
+    //     this.setState({totalPrice:newPrice,ingredients:updateIngredients});
+    //     this.updatePurchageState(updateIngredients);
+    // }
 
-    removeIngredientHandler=(type)=>{
-        const oldCount=this.state.ingredients[type];
-        if(oldCount<=0){
-            return;
-        }
-        const updateCount=oldCount-1;
-        const updateIngredients={
-            ...this.state.ingredients
-        }
-        updateIngredients[type]=updateCount;
-        const priceDeduction=INGREDIENT_PRICES[type];
-        const oldPrice=this.state.totalPrice;
-        const newPrice=oldPrice-priceDeduction
-        this.setState({totalPrice:newPrice,ingredients:updateIngredients})
-        this.updatePurchageState(updateIngredients);
+    // removeIngredientHandler=(type)=>{
+    //     const oldCount=this.state.ingredients[type];
+    //     if(oldCount<=0){
+    //         return;
+    //     }
+    //     const updateCount=oldCount-1;
+    //     const updateIngredients={
+    //         ...this.state.ingredients
+    //     }
+    //     updateIngredients[type]=updateCount;
+    //     const priceDeduction=INGREDIENT_PRICES[type];
+    //     const oldPrice=this.state.totalPrice;
+    //     const newPrice=oldPrice-priceDeduction
+    //     this.setState({totalPrice:newPrice,ingredients:updateIngredients})
+    //     this.updatePurchageState(updateIngredients);
 
-    }
+    // }
 
     purchaseHandler=()=>{
         this.setState({purchasing:true})
@@ -133,7 +126,7 @@ class BurgerBuilder extends Component{
                         ingredientAdded={this.props.onIngredientAdded}
                         ingredientRemove={this.props.onIngredientRemoved}
                         disabled={disabledInfo}
-                        price={this.state.totalPrice}
+                        price={this.props.price}
                         ordered={this.purchaseHandler}
                         purchasable={this.state.purchasable}
                         />
@@ -143,7 +136,7 @@ class BurgerBuilder extends Component{
                 ingredients={this.props.ings}
                 purchaseCancelled={this.purchaseCancelHandler}
                 purchaseContinued={this.purchaseContinueHandler}
-                price={this.state.totalPrice}/>
+                price={this.props.price}/>
         }
 
         if(this.state.loading){
@@ -165,7 +158,8 @@ class BurgerBuilder extends Component{
 
 const mapStateToProps = (state) =>{
     return{
-        ings:state.ingredients
+        ings:state.ingredients,
+        price:state.totalPrice
     }
 }
 
