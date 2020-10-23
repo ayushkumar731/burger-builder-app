@@ -40,7 +40,8 @@ class BurgerBuilder extends Component{
                         return sum+el;
                     },0);
 
-        this.setState({purchasable:sum>0});
+        // this.setState({purchasable:sum>0});
+        return sum>0;
 
     }
 
@@ -86,19 +87,21 @@ class BurgerBuilder extends Component{
 
     purchaseContinueHandler=()=>{
         // alert('You can continue');
-        const queryParams =[];
-        for (let i in this.state.ingredients){
-            queryParams.push(encodeURIComponent(i)+ '=' + encodeURIComponent(this.state.ingredients[i]))
-        }
-        queryParams.push('price='+this.state.totalPrice);
+        // const queryParams =[];
+        // for (let i in this.state.ingredients){
+        //     queryParams.push(encodeURIComponent(i)+ '=' + encodeURIComponent(this.state.ingredients[i]))
+        // }
+        // queryParams.push('price='+this.state.totalPrice);
         
-        console.log(queryParams);
-        const queryString =queryParams.join('&');
+        // console.log(queryParams);
+        // const queryString =queryParams.join('&');
 
-        this.props.history.push({
-            pathname:'/checkout',
-            search:'?'+queryString
-        });
+        // this.props.history.push({
+        //     pathname:'/checkout',
+        //     search:'?'+queryString
+        // });
+        
+        this.props.history.push('/checkout');
     }
 
     render(){ 
@@ -128,7 +131,7 @@ class BurgerBuilder extends Component{
                         disabled={disabledInfo}
                         price={this.props.price}
                         ordered={this.purchaseHandler}
-                        purchasable={this.state.purchasable}
+                        purchasable={this.updatePurchageState(this.props.ings)}
                         />
                 </Aux>
             )
@@ -159,7 +162,7 @@ class BurgerBuilder extends Component{
 const mapStateToProps = (state) =>{
     return{
         ings:state.ingredients,
-        price:state.totalPrice
+        price:state.totalPrice,
     }
 }
 
